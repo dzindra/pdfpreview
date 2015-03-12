@@ -39,7 +39,7 @@ static void drawBitmap(SplashBitmap *source, SplashBitmap *dest, int x, int y) {
 
 // Draws page pg from document doc using splashOut. Image is resized to fit box_w x box_h pixels. Resulting image is either written to stdout if 
 // canvas is NULL or drawn to its box on canvas based on page number.
-static void drawPage(PDFDoc *doc, SplashOutputDev *splashOut, SplashBitmap *canvas, int pg, int box_w, int box_h, int box_xnum, GBool useCropBox) {
+static void drawPage(PDFDoc *doc, SplashOutputDev *splashOut, SplashBitmap *canvas, int pg, int box_w, int box_h, int box_x, int box_y, GBool useCropBox) {
     double pg_w, pg_h;
 
     if (useCropBox) {
@@ -76,7 +76,7 @@ static void drawPage(PDFDoc *doc, SplashOutputDev *splashOut, SplashBitmap *canv
     if (canvas == NULL)
         splashOut->getBitmap()->writeImgFile(splashFormatJpeg, stdout, 300, 300);
     else
-        drawBitmap(splashOut->getBitmap(), canvas, ((pg - 1) % box_xnum) * box_w + (box_w - w) / 2, ((pg - 1) / box_xnum) * box_h + (box_h - h) / 2);
+        drawBitmap(splashOut->getBitmap(), canvas, box_x * box_w + (box_w - w) / 2, box_y * box_h + (box_h - h) / 2);
 }
 
 int main(int argc, char *argv[]) {
@@ -191,7 +191,7 @@ int main(int argc, char *argv[]) {
         if (debug)
             fprintf(stderr, "Processing page %d\n", pg);
 
-        drawPage(doc, splashOut, canvas, pg, box_w, box_h, box_xnum, gFalse);
+        drawPage(doc, splashOut, canvas, pg, box_w, box_h, ((pg - firstPage) % box_xnum), ((pg - firstPage) / box_xnum), gFalse);
     }
 
     // Write result.
