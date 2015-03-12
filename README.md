@@ -2,7 +2,7 @@
 
 Simple tool to generate thumbnails from PDF. It renders pages from input PDF beginning with `first page` to `last page` (inclusive) into one image. Pages are fitted into size specified as `box width` x `box height` and placed next to each other. Up to `box max x` pages can be placed in one row.
 
-See [make-samples.sh](blob/master/samples/make-samples.sh) or examples section for usage examples and their results.
+See [make-samples.sh](samples/make-samples.sh) or examples section for usage examples and their results.
 
 
 #### Dependencies
@@ -31,7 +31,7 @@ pdfpreview <box width> <box height> <box max x> [first page] [last page] [verbos
 
 #### Examples
 
-All examples are generated from [this PDF](blob/master/samples/sample.pdf)
+All examples are generated from [this PDF](samples/sample.pdf)
 
 `pdfpreview 100 150 2`
 
