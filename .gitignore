@@ -1,4 +1,5 @@
-pdfpreview_*
+pdfpreview_static
+pdfpreview_dynamic
 Makefile.in
 
 # http://www.gnu.org/software/autoconf
